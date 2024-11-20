@@ -16,12 +16,6 @@ def get_ejendomstyper_for_bfe_numre(dataframe, column_name):
     from sqlalchemy import create_engine
     from datetime import datetime
 
-    # resights brugernavn og password
-    username = "api@bygst.dk"
-    password = "646625HJ"
-    token = ResightsTokenGenerator.generate_token(username, password)
-    headers = {'Authorization': f"{token}"}  # header to resights request
-
     # Definer Ejendom tuple
     Ejendom = namedtuple("Ejendom", ["bfe_nummer", "sfe_nummer", "slug", "type", "sub_type"])
 
@@ -93,11 +87,7 @@ def get_ejerlejligheder(dataframe, bfe_column_name, type_column_name):
     from collections import namedtuple
     from resights.resights_setup import ResightsTokenGenerator
 
-    # resights brugernavn og password
-    username = "api@bygst.dk"
-    password = "646625HJ"
-    token = ResightsTokenGenerator.generate_token(username, password)
-    headers = {'Authorization': f"{token}"}  # header to resights request
+  
 
     
     filtered_df = dataframe[dataframe[type_column_name] == "MOTHER_PROPERTY_CONDOMINIUMS"]
